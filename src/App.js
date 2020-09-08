@@ -1,26 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import {UnControlled as CodeMirror} from 'react-codemirror2'
+import { format } from 'prettier/standalone'
+import parserBabel from 'prettier/parser-babel'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/dracula.css';
+import './App.css'
+
+require('codemirror/mode/javascript/javascript');
+
+function App (props) {
+    const [text, setText] = useState('')
+    // let instance
+  
+    return <div className="wrapper">
+      <CodeMirror
+        value={text}
+        editorDidMount={editor => { 
+          // instance = editor
+          // setTimeout(() => {
+            // instance.markText(
+            //   {line: 0, ch: 0},
+            //   {line: 0, ch: 10},
+            //   {
+            //     css: "color: red",
+            //   }
+            // )
+          // }, 1000)
+        }}
+        onChange={(editor, data, value) => {
+          setText(value)
+        }}
+        className="CodeMirror"
+        options={{
+          mode: {name: "javascript", json: true},
+          theme: 'dracula',
+          lineNumbers: true,
+          viewportMargin: Infinity,
+        }}
+      />
+      <div className="button-container">
+        <a /* eslint-disable-line */
+          href="#"
+          className="btn"
+          onClick={() => {
+            try {
+              const newText = format(text, {
+                  parser: 'json',
+                  printWidth: 0,
+                  trailingComma: 'all',
+                  plugins: [parserBabel]
+                })
+    
+              setText(newText)
+            } catch (e) { 
+              console.error(e)
+            }
+          }}
         >
-          Learn React
+          <span>Prettify</span>
         </a>
-      </header>
+      </div>
     </div>
-  );
 }
 
 export default App;
