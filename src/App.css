@@ -5,8 +5,9 @@
 .button-container {
   position: absolute;
   top: 95%;
-  left: 3%;
-  transform: translate(-3%, -95%);
+  left: 98%;
+  transform: translate(-98%, -95%);
+  z-index: 10;
 }
 
 .wrapper {
