@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UnControlled as CodeMirror } from 'react-codemirror2'
 import { format } from 'prettier/standalone'
 import parserBabel from 'prettier/parser-babel'
 import Toastify from 'toastify-js'
+import Clipboard from 'clipboard'
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/dracula.css';
@@ -15,6 +16,13 @@ let instance
 
 function App(props) {
   const [text, setText] = useState('')
+
+  useEffect(() => {
+    const clipboard = new Clipboard(".copyButton", {
+      text: () => text,
+    })
+    return () => clipboard.destroy()
+  }, [text])
 
   return <div className="wrapper">
     <CodeMirror
@@ -63,6 +71,20 @@ function App(props) {
         }}
       >
         <span>Prettify</span>
+      </a>
+
+      <a /* eslint-disable-line */ href='#' className='copyButton btn' onClick={() => {
+        Toastify({
+          text: "Copied",
+          duration: 3000,
+          newWindow: true,
+          gravity: "top", // `top` or `bottom`
+          position: 'right', // `left`, `center` or `right`
+          backgroundColor: "linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113))",
+          stopOnFocus: true, // Prevents dismissing of toast on hover
+        }).showToast();
+      }}>
+        <span>Copy JSON</span>
       </a>
     </div>
   </div>
