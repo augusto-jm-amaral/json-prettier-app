@@ -4,6 +4,7 @@
 }
 
 .button-container {
+  display: flex;
   position: absolute;
   top: 95%;
   left: 98%;
