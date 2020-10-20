@@ -50,8 +50,24 @@ function App(props) {
         </a>
       </div>
       <div className="button-container">
-        <a /* eslint-disable-line */
-          href="#"
+        <a 
+          href
+          className='btn btnCopy'
+          onClick={() => {
+            Toastify({
+              text: "Copied",
+              duration: 3000,
+              newWindow: true,
+              gravity: "top",
+              position: 'right',
+              backgroundColor: "linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113))",
+              stopOnFocus: true,
+            }).showToast();
+          }}>
+          <span>Copy</span>
+        </a>
+        <a
+          href
           className="btn"
           onClick={() => {
             try {
@@ -70,29 +86,16 @@ function App(props) {
                 text: "Invalid JSON",
                 duration: 3000,
                 newWindow: true,
-                gravity: "top", // `top` or `bottom`
-                position: "right", // `left`, `center` or `right`
+                gravity: "top",
+                position: "right",
                 backgroundColor:
                   "linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113))",
-                stopOnFocus: true, // Prevents dismissing of toast on hover
+                stopOnFocus: true,
               }).showToast();
             }
           }}
         >
           <span>Prettify</span>
-        </a>
-        <a /* eslint-disable-line */ href='#' className='copyButton btn' onClick={() => {
-          Toastify({
-            text: "Copied",
-            duration: 3000,
-            newWindow: true,
-            gravity: "top", // `top` or `bottom`
-            position: 'right', // `left`, `center` or `right`
-            backgroundColor: "linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113))",
-            stopOnFocus: true, // Prevents dismissing of toast on hover
-          }).showToast();
-        }}>
-          <span>Copy JSON</span>
         </a>
       </div>
     </div >

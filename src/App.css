@@ -50,6 +50,22 @@
   transition: transform 400ms ease-in;
 }
 
+.btnCopy {
+  width: 100px;
+  margin-right: 10px;
+}
+
+.btnCopy::after {
+  background: rgba(59, 173, 227, 1);
+  background: linear-gradient(
+    45deg,
+    rgb(59, 227, 163) 0%,
+    rgb(87, 201, 230) 25%,
+    rgb(68, 128, 183) 51%,
+    rgb(56, 53, 255) 100%
+  );
+}
+
 .btn:hover::after {
   transform: translateX(-200px);
 }
