@@ -21,7 +21,7 @@ function App(props) {
   const [text, setText] = useState("");
 
   useEffect(() => {
-    const clipboard = new Clipboard(".copyButton", {
+    const clipboard = new Clipboard(".btnCopy", {
       text: () => text,
     })
     return () => clipboard.destroy()
