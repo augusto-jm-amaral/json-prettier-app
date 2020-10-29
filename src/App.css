@@ -1,6 +1,9 @@
 .CodeMirror {
   height: 100vh !important;
-  padding-bottom: 20px;
+}
+
+.CodeMirror-code {
+  margin-bottom: 20px; 
 }
 
 .button-container {
